@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">rabo</string>
+    <string name="app_name">Rabo</string>
+    <string name="issues_count">Issues count: %s</string>
 </resources>
