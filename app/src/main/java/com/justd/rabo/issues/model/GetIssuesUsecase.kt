@@ -21,7 +21,7 @@ class GetIssuesUsecase(
         try {
             val resultMatrix: Matrix = readCsvMatrix(fileContent)
             return parseIssues(resultMatrix)
-        } catch (exception: ClassCastException) {
+        } catch (exception: Throwable) {
             throw IOException("failed to parse csv")
         }
     }
@@ -31,7 +31,10 @@ class GetIssuesUsecase(
         fileContent
             .split("\n")
             .forEach { line ->
-                val entries = line.replace("\"", "").split(",")
+                val entries = line
+                    .replace("\"", "")
+                    .replace("\r", "")
+                    .split(",")
                 matrix.add(entries.toTypedArray())
             }
         return matrix.toTypedArray()
